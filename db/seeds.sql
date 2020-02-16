@@ -1,9 +1,9 @@
-INSERT INTO burgers(burgerName, devoured)
-VALUES ('BBQ Burger', false),
-       ('Mushroom Burger', false),
-       ('Bacon Burger', false),
-       ('Vegan Burger', false)
 
+INSERT INTO burgers(burgerName)
+VALUES ('BBQ Burger'),
+       ('Mushroom Burger'),
+       ('Bacon Burger'),
+       ('Vegan Burger')
 
 
 
