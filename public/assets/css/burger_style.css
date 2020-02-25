@@ -1,0 +1,74 @@
+body {
+  text-align: center;
+}
+
+ .jumbotron {
+  display: flex;
+  align-items: center;
+  height: 150px;
+  background-image: url(../img/bAwburger.jpg);
+}
+
+
+ .main {
+  background-color: orange;
+  overflow-x: hidden;
+  /* align-content: center; */
+}
+.burger-list {
+  text-align: center;
+  display: inline;
+}
+
+.card1 {
+  display: inline-block;
+}
+
+.card2 {
+  display: inline-block;
+}
+.card3 {
+  display: inline-block;
+}
+.submit-btn {
+  text-align: center;
+  margin-left: 150%;
+  margin-top: 3%;
+}
+.textarea {
+  text-align: center;
+  margin-top: 150%;
+  margin-left: 100%;
+}
+.col-md-4 {
+  display: inline-block;
+  
+} */
+.devour-btn {
+  margin-left: 1.5%;
+}
+.card-text {
+  margin-right: 2%;
+}
+.top-card {
+  justify-content: center;
+  width: 80%;
+  display: inline-block;
+  height: 20%;
+}
+
+ .btn-lg {
+  background-color: black;
+  border: none!important;
+  color: white;
+ }
+
+ .btn-default {
+  background-color: black;
+  border: none!important;
+  color: white;
+ }
+
+ ::placeholder {
+  color: black;
+} 

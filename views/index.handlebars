@@ -1,38 +1,95 @@
-<h1>Burger Time!</h1>
+  <div class="col-lg-10 card1">
+    <div class="card mb-3"  class="devoured">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img src="/assets/img/burgertime.jpg" class="card-img" alt="burger">
+        </div>
+          <div class="col-sm-8">
+            <div class="card-body">
+		          <h5>Burgers that have not been eaten</h5>
+                <ul>
+                {{#each burgers}} {{#unless this.devoured}}
+                  <li class="card-text">{{this.burgerName}}
+                    <form action="/burger/:id" method="PUT">
+                    <button type="submit" class="btn btn-default btn-primary devour-btn">EAT IT</button>
+                    </form>
+                  </li>
 
-<h2>Burgers that have not been devoured!</h2>
-
-<ul>
-  {{#each burgers}}
-    {{#unless devoured}}
-      {{> cats/cat-block sleep=true}}
-    {{/unless}}
-  {{/each}}
-</ul>
-
-<h2>Burgers that have devoured!</h2>
-
-<ul>
-  {{#each cats}}
-    {{#if sleepy}}
-      {{> cats/cat-block sleep=false}}
-    {{/if}}
-  {{/each}}
-</ul>
-
-<h2>Add a Cat</h2>
-<form class="create-form">
-
-  <div class="form-group">
-    <label for="ca">Cat Name:</label>
-    <input type="text" id="ca" name="name">
+                {{/unless}} {{/each}}
+                </ul>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>	
+ <!-- <div class="row top-card"> 
+  <div class="card col-lg-10 card1">
+    <div class="card mb-3">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img src="/assets/img/burgertime.jpg" class="card-img" alt="a burger">
+        </div>
+          <div class="col-sm-3"> 
+            <div class="card-body">
+		          <h5 class="card-title">Burgers To Be Devoured</h5>
+                <ul class="burger-list">
+                {{#each burgers}} {{#unless this.devoured}}
+                  <div>
+                    <li  class="card-text">{{this.burgerName}}</li>
+                  <div>
+                    <form action="eatBurger/{{this.burgerID}}" method="POST" class="devour-form">
+                      <button type="submit" class="btn btn-default btn-primary devourBtn">DEVOUR IT!</button>
+                    </form>
+                  </div>
+                  </div>
+                  {{/unless}} {{/each}}
+                  </ul>
+	          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+ </div> -->
+ 
+  <div class="card mb-3 col-lg-10 card2">
+    <div class="row no-gutters">
+      <div class="col-md-3">
+        <img src="/assets/img/tallburger.jpg" class="card-img" alt="burger-name">
+      </div>
+        <div class="col-lg-8">
+          <div class="card-body">
+            <form class="create-update-form" action="burgers" method="POST">
+              <div class="form-group col-lg-2">
+                <textarea class="textarea" placeholder="Enter a burger you want to add" id="burgerName" name="burgerName" rows="1" cols="30"></textarea>
+                <br>
+                <button type="submit" class="btn btn-lg btn-primary submit-btn">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
   </div>
 
-  <div class="form-group">
-    <label for="sleepy">Sleepy?</label><br>
-    <input type="radio" name="sleepy" value="1" checked> Sleepy!<br>
-    <input type="radio" name="sleepy" value="0"> Awake
+
+  <div class="col-lg-10 card3">
+    <div class="card mb-3"  class="devoured">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img src="/assets/img/hungry.jpg" class="card-img" alt="empty plate">
+        </div>
+          <div class="col-sm-8">
+            <div class="card-body">
+		          <h5>Burgers That Have Been Devoured</h5>
+                <ul>
+                {{#each burgers}} {{#if this.devoured}}
+                  <li class="card-text">{{this.burgerName}}</li>
+                {{/if}} {{/each}}
+                </ul>
+              </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <button type="submit">Add Cat</button>
-</form>
+
+    
