@@ -1,76 +1,42 @@
-const express = require('express');
-const router = express.Router();
-const burger = require('../models/burger')
+// Pull in required dependencies
+var express = require('express');
+var router = express.Router();
 
-router.get("/", function(req, res) {
-    burger.all(function(data) {
-      var hbsObject = {
-        burgers: data
-      };
-      console.log(hbsObject);
-      res.render("index", hbsObject);
-    });
+// Import the model (burger.js) to use its database functions.
+var burger = require('../models/burger.js');
+
+// Create the routes and associated logic
+router.get('/', function(req, res) {
+  burger.selectAll(function(data) {
+    var hbsObject = {
+      burgers: data
+    };
+    // console.log(hbsObject);
+    res.render('index', hbsObject);
   });
+});
 
-  router.get('/burger/:id', function(req, res) {
-    const burgerID = req.body.burgerID
-    res.redirect('/burger')
-  })
+router.post('/burgers', function(req, res) {
+  console.log(req.body)
+  burger.insertOne([
+    'burgerName'
+  ], [
+    req.body.burger_name
+  ], function(data) {
+    res.redirect('/');
+  });
+});
 
-  router.get('/burger', (req, res) => {
-    burger.all(function(data) {
-      const hbsObject = {
-        burgers: data
-      }
-      console.log(hbsObject)
-      res.render('index', hbsObject)
-    })
-  })
+router.put('/burgers/:id', function(req, res) {
+  console.log(req.params)
+  var condition = 'burgerID = ' + req.params.id;
 
-  router.put('/burger/:id', (req, res) => {
-      const condition = `devoured + ${req.params.devoured}`
-      console.log('condition: ', condition)
-      burger.update({
-        devoured: true
-      
-      }, condition, function() {
-        res.redirect('/burger')
-      })
-  })
-  
-  // router.post("/burger", function(req, res) {
-  //   burger.create(["burgerName"], [req.body.burgerName], function() {
-  //     res.redirect("/");
-  //   });
-  // });
+  burger.updateOne({
+    devoured: true
+  }, condition, function(data) {
+    res.redirect('/');
+  });
+});
 
-  // router.put('/burgers', (req, res) => {
-  //   console.log(req)
-  //   const condition = 'burgerID = ' + req.params.burgerID;
-  //   console.log('condition: ', condition)
-  //   burger.update({
-  //       devoured: req.body.devoured
-  //   }, condition, function(result) {
-  //       if (result.changedRows === 0) {
-  //           return res.status(400).end()
-  //       } else {
-  //           res.status(200).end()
-  //       }
-  //   })
-  //   })
-  
-  // router.post("eatBurger/:id", function (req, res) {
-  //   console.log(req)
-  //   var condition = "id = " + req.params.burgerID;
-  //   burger.update({
-  //     devoured: true
-  //   }, condition, function () {
-  //     res.redirect('/');
-  //   });
-  // });
-
-
-
-
-
+// Export routes for server.js to use.
 module.exports = router;
