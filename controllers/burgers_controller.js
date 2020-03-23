@@ -1,17 +1,16 @@
-// Pull in required dependencies
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-// Import the model (burger.js) to use its database functions.
-var burger = require('../models/burger.js');
 
-// Create the routes and associated logic
+const burger = require('../models/burger.js');
+
+
 router.get('/', function(req, res) {
   burger.selectAll(function(data) {
-    var hbsObject = {
+    const hbsObject = {
       burgers: data
     };
-    // console.log(hbsObject);
+  
     res.render('index', hbsObject);
   });
 });
@@ -29,7 +28,7 @@ router.post('/burgers', function(req, res) {
 
 router.put('/burgers/:id', function(req, res) {
   console.log(req.params)
-  var condition = 'burgerID = ' + req.params.id;
+  const condition = 'burgerID = ' + req.params.id;
 
   burger.updateOne({
     devoured: true
@@ -38,5 +37,5 @@ router.put('/burgers/:id', function(req, res) {
   });
 });
 
-// Export routes for server.js to use.
+
 module.exports = router;
